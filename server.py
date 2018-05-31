@@ -5,19 +5,9 @@ from moon import img
 @route('/')
 def root():
     return '''
-        <h1>Hello World</h1>
-        <a href="http://localhost:3000/face">go</a>
+        <h1>Wrong Route</h1>
     '''
 
-
-@get('/face') # or @route('/login')
-def login():
-    return '''
-        <form action="/face" method="post">
-            URL: <input name="url" type="text" />
-            <input value="Enter" type="submit" />
-        </form>
-    '''
 
 @post('/face') # or @route('/login', method='POST')
 def do_login():
