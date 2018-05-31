@@ -20,7 +20,7 @@ def img(url):
         minNeighbors=5,
         minSize=(30, 30)
     )
-    print("Found {0} faces!".format(len(faces)))
+    return (format(len(faces)))
 
 
 def main():
