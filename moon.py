@@ -30,6 +30,14 @@ def main():
     # url2 = "http://www.gstatic.com/tv/thumb/persons/835149/835149_v9_bb.jpg"
     img(url)
 
+def xjson(status,code=0,url=""):
+    if(status=="fail"):
+        queryreturn = '{"status": "error","data": null,"message": "An Error has occurred"}'
+    else:
+        queryreturn = '{"status": "success","data": {"url": "'+url+'","faces": "'+str(code)+'" },"message": null}'
+    return queryreturn
+
+
 
 if __name__ == '__main__':
     main()
