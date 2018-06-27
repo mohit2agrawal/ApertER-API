@@ -1,5 +1,5 @@
 from bottle import get, route, post, run, request # or route
-from moon import img,xjson
+from moon import fr_, json_
 
 
 @route('/')
@@ -8,17 +8,18 @@ def root():
         <h1>Wrong Route</h1>
     '''
 
-
-@post('/face') # or @route('/login', method='POST')
-def do_login():
+@post('/fr')
+def fr():
     try:
         url = request.forms.get('url')
-        s=img(url)
+        face = fr_(url=url)
     except:
-        s= xjson("fail")
-        return s
+        json = json_(status="fail")
+        return json
     else:
-        s= xjson("success",s,url)
-        return s
+        json = json_(status="success",face=face,url=url)
+        return json
+
 if __name__ == '__main__':
-    run(host='localhost', port=3000)
+    print("Do not close this window")
+    run(host='localhost', port=8880)

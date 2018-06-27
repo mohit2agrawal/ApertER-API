@@ -1,49 +1,24 @@
-# FACE RECOGNITION to test server ( work pending on build )
-
-
-
-import cv2, sys, json
+import cv2
 from skimage import io
 
-def read_in():
-    lines = sys.stdin.readlines()
-    return json.loads(lines[0])
-
-def img(url):
+def fr_(url):
     image = io.imread(url)
-    casc_path = "haarcascade_frontalface_default.xml"
-    face_cascade = cv2.CascadeClassifier(casc_path)
+    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(
-        gray,
-        scaleFactor=1.1,
-        minNeighbors=5,
-        minSize=(30, 30)
-    )
+    faces = face_cascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30))
     return (format(len(faces)))
 
 
 def main():
-    url = read_in()
-    print("py   ")
-    print(url)
-    # url2 = "http://www.gstatic.com/tv/thumb/persons/835149/835149_v9_bb.jpg"
-    img(url)
+    test_image = "http://www.gstatic.com/tv/thumb/persons/835149/835149_v9_bb.jpg"
+    print(json_(fr_(url=test_image)))
 
-def xjson(status,code=0,url=""):
+def json_(status,face=0,url=""):
     if(status=="fail"):
-        queryreturn = '{"status": "error","data": null,"message": "An Error has occurred"}'
+        json = '{"status": "error","data": null,"message": "An Error has occurred"}'
     else:
-        queryreturn = '{"status": "success","data": {"url": "'+url+'","faces": "'+str(code)+'" },"message": null}'
-    return queryreturn
+        json = '{"status": "success","data": {"url": "'+url+'","faces": "'+str(face)+'" },"message": null}'
+    return json
 
-
-
-if __name__ == '__main__':
+if (__name__ == '__main__'):
     main()
-
-
-
-
-
-
