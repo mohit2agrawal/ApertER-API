@@ -27,7 +27,7 @@ emotions = pd.get_dummies(dataset['emotion']).as_matrix()
 X_train, X_test, y_train, y_test = train_test_split(faces, emotions, test_size=0.2, random_state=0)
 
 
-
+#   CNN starts here
 classifier = Sequential()
 classifier.add(Convolution2D(48,3,3, input_shape=(width,height,1),activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2,2)))
