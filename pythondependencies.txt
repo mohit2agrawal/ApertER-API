@@ -2,3 +2,6 @@ opencv
 bottle
 scikit-image
 scipy
+keras
+tensorflow
+theano
