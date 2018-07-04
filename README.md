@@ -1,3 +1,3 @@
 # moon-emotion-recognition-api
- Emotion Recognition System based on CNN.
+ Emotion Recognition based on CNN.
  
