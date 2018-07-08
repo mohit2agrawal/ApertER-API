@@ -21,7 +21,13 @@ def er_(url):
         em = int(np.argmax(prediction))
     return em
 
-
+def fr_(url):
+    image = io.imread(url)
+    face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30))
+    return (format(len(faces)))
+    
 def json_(status, em=0, url=""):
     if status == "fail":
         json = '{"status": "error_fail","data": null,"message": "An Error has occurred"}'
@@ -30,7 +36,6 @@ def json_(status, em=0, url=""):
     else:
         json = '{"status": "success", "data": {"url": "'+url+'", "emotion": "'+str(emotion[em])+'" }, "message": "Successfully evaluated"}'
     return json
-
 
 def main():
     test_image = "http://www.gstatic.com/tv/thumb/persons/835149/835149_v9_bb.jpg"
