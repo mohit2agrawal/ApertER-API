@@ -1,3 +1,3 @@
-# moon-emotion-recognition-api
+# ApertER-api
  Emotion Recognition based on CNN.
  
