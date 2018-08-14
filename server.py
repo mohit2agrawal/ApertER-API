@@ -1,5 +1,5 @@
 from bottle import get, route, post, run, request # or route
-from aperter import er_, json_
+from newmoon import er_, json_
 
 
 @route('/')
@@ -7,7 +7,20 @@ def root():
     return '''
         <h1>Wrong Route</h1>
     '''
-
+@route('/api')
+def api():
+    url = request.query.url
+    try:
+        em = -1
+        em = er_(url=url)
+    except:
+        print("url: "+url+" ,emotion: "+str(em))
+        json = json_(status="fail")
+        return json
+    else:
+        print("url: "+url+" ,emotion: "+str(em))
+        json = json_(status="success",em=em,url=url)
+        return json
 
 @post('/er')
 def er():
