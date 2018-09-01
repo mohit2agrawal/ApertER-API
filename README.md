@@ -1,3 +1,3 @@
-# ApertER-api
+# ApertER-API
  Emotion Recognition based on CNN.
  
