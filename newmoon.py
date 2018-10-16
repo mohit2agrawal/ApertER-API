@@ -6,6 +6,16 @@ from keras.models import load_model
 
 
 def er_(url):
+    """emotion recognition
+    identify emotion in the image
+
+    Args:
+        url (str): image url
+
+    Returns:
+        int: emotion
+    """
+
     em = -1
     classifier = load_model(model_path)
     image = io.imread(url)
@@ -22,13 +32,34 @@ def er_(url):
     return em
 
 def fr_(url):
+    """face recognition
+    detect faces in the image
+
+    Args:
+        url (str): image url
+
+    Returns:
+        str: number of faces detected
+    """
+
     image = io.imread(url)
     face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray,scaleFactor=1.1,minNeighbors=5,minSize=(30, 30))
     return (format(len(faces)))
-    
+
 def json_(status, em=0, url=""):
+    """[summary]
+
+    Args:
+        status (str): status string
+        em (int, optional): Defaults to 0. emotion id
+        url (str, optional): Defaults to "". url string
+
+    Returns:
+        str: the response json string
+    """
+
     if status == "fail":
         json = '{"status": "error_fail","data": null,"message": "An Error has occurred"}'
     elif em == -1:
